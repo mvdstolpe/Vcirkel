@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)file:///C:/Users/Michel/OneDrive/Documents/V-Cirkel/V-Cirkel%20%C2%B7%20Type%20Deductie.html -->
+<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V-Cirkel · Type Deductie</title>
+<link href="./Index_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg:#0d0d0f; --surface:#16161a; --surface2:#1e1e24; --border:#2a2a35;
+  --text:#e8e8f0; --muted:#6b6b80; --accent:#c8a96e;
+  --hart:#c87b8a; --hoofd:#7b9ec8; --buik:#8bc87b;
+  --elim-bg:#160909; --elim-text:#4a2020; --active:#c8a96e18;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;width:700px;height:700px;background:radial-gradient(circle,#c8a96e06 0%,transparent 65%);top:-250px;left:-250px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;width:500px;height:500px;background:radial-gradient(circle,#7b9ec806 0%,transparent 65%);bottom:-100px;right:-100px;pointer-events:none;z-index:0}
+
+header{padding:36px 40px 24px;border-bottom:1px solid var(--border);position:relative;z-index:1;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+h1{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:var(--accent);letter-spacing:-.5px}
+.subtitle{font-size:13px;color:var(--muted);font-weight:300;letter-spacing:.5px}
+
+.main{max-width:1180px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:1fr 296px;gap:32px;align-items:start;position:relative;z-index:1}
+@media(max-width:820px){.main{grid-template-columns:1fr}header{padding:22px 18px 16px}.main{padding:20px 14px}}
+
+/* ── SIDEBAR ── */
+.sidebar{position:sticky;top:24px}
+.sidebar-title{font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.type-cards{display:flex;flex-direction:column;gap:6px}
+.type-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 13px;transition:all .3s ease;cursor:pointer}
+.type-card:hover:not(.eliminated){border-color:var(--accent);background:var(--active)}
+.type-card.eliminated{background:var(--elim-bg);border-color:#1e0808;opacity:.25;pointer-events:none}
+.type-card.highlighted{border-color:var(--accent);background:var(--active);box-shadow:0 0 0 1px #c8a96e30}
+.tc-top{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.type-badge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:12px;font-weight:700;flex-shrink:0}
+.badge-Hart{background:#c87b8a1a;color:var(--hart);border:1px solid #c87b8a40}
+.badge-Hoofd{background:#7b9ec81a;color:var(--hoofd);border:1px solid #7b9ec840}
+.badge-Buik{background:#8bc87b1a;color:var(--buik);border:1px solid #8bc87b40}
+.type-card.eliminated .type-badge{background:#1a0808!important;color:var(--elim-text)!important;border-color:transparent!important}
+.tc-name{font-size:13px;font-weight:500}
+.type-card.eliminated .tc-name{color:var(--elim-text)}
+.tc-sub{font-size:11px;color:var(--muted);font-style:italic;margin-left:34px}
+.type-card.eliminated .tc-sub{color:#2a0e0e}
+.elim-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#6a2020;margin-left:34px;margin-top:2px;display:none}
+.type-card.eliminated .elim-tag{display:block}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:6px;margin-bottom:26px;flex-wrap:wrap}
+.tab{padding:7px 17px;border-radius:40px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.tab:hover{border-color:var(--accent);color:var(--text)}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#0d0d0f;font-weight:700}
+
+/* ── SECTIONS ── */
+.section{animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.sec-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--text);margin-bottom:10px}
+.sec-intro{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:22px}
+
+/* ── POLARITEITEN ── */
+.pol-block{margin-bottom:16px}
+.pol-dim-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.pol-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pol-btn{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;cursor:pointer;transition:all .15s;text-align:left}
+.pol-btn:hover{border-color:var(--accent);background:var(--surface2)}
+.pol-btn.selected{border-color:var(--accent);background:var(--active);color:var(--accent);font-weight:500}
+.pol-btn .lbl{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.pol-btn.selected .lbl{color:#c8a96e70}
+
+.effect-bar{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:13px;color:var(--muted);margin-top:18px;line-height:1.5;transition:all .3s;min-height:38px}
+.effect-bar.has{color:var(--text);border-color:#c87b8a40;background:#c87b8a08}
+
+.divider{width:34px;height:2px;background:var(--accent);opacity:.35;margin:20px 0}
+.count-line{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.count-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* ── V-CIRKEL ── */
+.vc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+.vc-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:17px;transition:border-color .2s}
+.vc-card:hover{border-color:#c8a96e50}
+.vc-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.vc-name{font-size:14px;font-weight:500}
+.vc-meta{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:1px}
+.vc-credo{font-size:12px;color:var(--muted);font-style:italic;line-height:1.55;margin-bottom:12px}
+.vc-rows{display:grid;gap:7px}
+.vc-row{display:grid;grid-template-columns:96px 1fr;gap:8px;align-items:start}
+.vc-key{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.vc-val{font-size:14px;font-style:italic;color:var(--text)}
+
+/* ── KERNKWADRANTEN ── */
+.kk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+.kk-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:17px}
+.kk-head{display:flex;align-items:center;gap:10px;margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid var(--border)}
+.kk-quads{display:flex;flex-direction:column;gap:8px}
+
+/* Single kernkwadrant blokje: 2x2 grid */
+.kk-quad{background:var(--surface2);border-radius:9px;padding:11px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kk-cell{}
+.kk-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.kk-val{font-size:13px;color:var(--text);line-height:1.3}
+.lbl-kwal{color:var(--accent)}
+.lbl-valk{color:var(--hart)}
+.lbl-aller{color:#c87b8a80}
+.lbl-uitd{color:var(--buik)}
+
+/* ── CENTRUM ── */
+.centrum-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+.centrum-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 15px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);cursor:pointer;text-align:left;transition:all .15s}
+.centrum-btn:hover{border-color:var(--accent);background:var(--surface2)}
+.centrum-btn .c-lbl{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:4px;opacity:.65}
+.sel-hart{border-color:var(--hart)!important;background:#c87b8a15!important;color:var(--hart)!important}
+.sel-hoofd{border-color:var(--hoofd)!important;background:#7b9ec815!important;color:var(--hoofd)!important}
+.sel-buik{border-color:var(--buik)!important;background:#8bc87b15!important;color:var(--buik)!important}
+.sel-all{border-color:var(--accent)!important;background:var(--active)!important;color:var(--accent)!important}
+.centrum-uitleg{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 17px;font-size:13px;color:var(--muted);line-height:1.95}
+
+/* ── RESULT ── */
+.result-banner{background:linear-gradient(135deg,#c8a96e18,#7b9ec810);border:1px solid var(--accent);border-radius:13px;padding:20px 22px;margin-bottom:26px;display:none;animation:fadeIn .5s ease}
+.result-banner.visible{display:block}
+.result-banner h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);margin-bottom:4px}
+.r-meta{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.55;margin-bottom:10px}
+.r-credo{font-size:13px;color:var(--text);font-style:italic;line-height:1.65;margin-bottom:12px}
+.r-chips{display:flex;flex-wrap:wrap;gap:6px}
+.r-chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 11px;font-size:11px;display:flex;gap:5px}
+.chip-k{color:var(--muted)}.chip-v{color:var(--text);font-style:italic}
+
+.reset-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:9px 17px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;margin-top:20px;display:inline-block}
+.reset-btn:hover{border-color:var(--hart);color:var(--hart)}
+.empty-state{font-size:14px;color:var(--muted);padding:20px 0;font-style:italic}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>V-Cirkel</h1>
+  <span class="subtitle">Enneagram type deductie · 9 types · 6 polariteiten</span>
+</header>
+
+<div class="main">
+  <div class="content">
+
+    <!-- Result banner -->
+    <div id="result-banner" class="result-banner">
+      <h3 id="r-title"></h3>
+      <div id="r-meta" class="r-meta"></div>
+      <p id="r-credo" class="r-credo"></p>
+      <div id="r-chips" class="r-chips"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="showTab(1)">Cirkel 1 · Polariteiten</button>
+      <button class="tab" onclick="showTab(2)">Cirkel 2 · V-Cirkel</button>
+      <button class="tab" onclick="showTab(3)">Cirkel 3 · Centrum</button>
+      <button class="tab" onclick="showTab(4)">Kernkwadranten</button>
+    </div>
+
+    <!-- CIRKEL 1: POLARITEITEN -->
+    <div id="tab-1" class="section">
+      <div class="sec-label">Cirkel 1</div>
+      <div class="sec-title">Polariteiten</div>
+      <p class="sec-intro">Kies per dimensie wat het meest <em>comfortabel</em> voelt voor de persoon. Types met een mismatch worden direct geëlimineerd.</p>
+      <div id="pol-dims"><div class="pol-block"><div class="pol-dim-label">Match / Mismatch</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Match/Mismatch-Matcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Matcher&#39;)">
+          <span class="lbl">Comfortabel</span>Matcher
+        </button><button class="pol-btn" id="pb-Match/Mismatch-Mismatcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Mismatcher&#39;)">
+          <span class="lbl">Comfortabel</span>Mismatcher
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Oriëntatie</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Oriëntatie-Doelgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Doelgericht&#39;)">
+          <span class="lbl">Comfortabel</span>Doelgericht
+        </button><button class="pol-btn" id="pb-Oriëntatie-Procesgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Procesgericht&#39;)">
+          <span class="lbl">Comfortabel</span>Procesgericht
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Initiatief</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Initiatief-Proactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Proactief&#39;)">
+          <span class="lbl">Comfortabel</span>Proactief
+        </button><button class="pol-btn" id="pb-Initiatief-Reactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Reactief&#39;)">
+          <span class="lbl">Comfortabel</span>Reactief
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Zichtbaarheid</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Zichtbaarheid-Geprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Geprofileerd&#39;)">
+          <span class="lbl">Comfortabel</span>Geprofileerd
+        </button><button class="pol-btn" id="pb-Zichtbaarheid-Ongeprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Ongeprofileerd&#39;)">
+          <span class="lbl">Comfortabel</span>Ongeprofileerd
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Stijl</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Stijl-Formeel" onclick="selPol(&#39;Stijl&#39;,&#39;Formeel&#39;)">
+          <span class="lbl">Comfortabel</span>Formeel
+        </button><button class="pol-btn" id="pb-Stijl-Informeel" onclick="selPol(&#39;Stijl&#39;,&#39;Informeel&#39;)">
+          <span class="lbl">Comfortabel</span>Informeel
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Contact</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Contact-Apart" onclick="selPol(&#39;Contact&#39;,&#39;Apart&#39;)">
+          <span class="lbl">Comfortabel</span>Apart
+        </button><button class="pol-btn" id="pb-Contact-Samen" onclick="selPol(&#39;Contact&#39;,&#39;Samen&#39;)">
+          <span class="lbl">Comfortabel</span>Samen
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Match / Mismatch</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Match/Mismatch-Matcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Matcher&#39;)">
+          <span class="lbl">Comfortabel</span>Matcher
+        </button><button class="pol-btn" id="pb-Match/Mismatch-Mismatcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Mismatcher&#39;)">
+          <span class="lbl">Comfortabel</span>Mismatcher
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Oriëntatie</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Oriëntatie-Doelgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Doelgericht&#39;)">
+          <span class="lbl">Comfortabel</span>Doelgericht
+        </button><button class="pol-btn" id="pb-Oriëntatie-Procesgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Procesgericht&#39;)">
+          <span class="lbl">Comfortabel</span>Procesgericht
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Initiatief</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Initiatief-Proactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Proactief&#39;)">
+          <span class="lbl">Comfortabel</span>Proactief
+        </button><button class="pol-btn" id="pb-Initiatief-Reactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Reactief&#39;)">
+          <span class="lbl">Comfortabel</span>Reactief
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Zichtbaarheid</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Zichtbaarheid-Geprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Geprofileerd&#39;)">
+          <span class="lbl">Comfortabel</span>Geprofileerd
+        </button><button class="pol-btn" id="pb-Zichtbaarheid-Ongeprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Ongeprofileerd&#39;)">
+          <span class="lbl">Comfortabel</span>Ongeprofileerd
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Stijl</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Stijl-Formeel" onclick="selPol(&#39;Stijl&#39;,&#39;Formeel&#39;)">
+          <span class="lbl">Comfortabel</span>Formeel
+        </button><button class="pol-btn" id="pb-Stijl-Informeel" onclick="selPol(&#39;Stijl&#39;,&#39;Informeel&#39;)">
+          <span class="lbl">Comfortabel</span>Informeel
+        </button></div></div><div class="pol-block"><div class="pol-dim-label">Contact</div>
+    <div class="pol-pair"><button class="pol-btn" id="pb-Contact-Apart" onclick="selPol(&#39;Contact&#39;,&#39;Apart&#39;)">
+          <span class="lbl">Comfortabel</span>Apart
+        </button><button class="pol-btn" id="pb-Contact-Samen" onclick="selPol(&#39;Contact&#39;,&#39;Samen&#39;)">
+          <span class="lbl">Comfortabel</span>Samen
+        </button></div></div></div>
+      <div class="effect-bar" id="pol-effect">Selecteer een polariteit om te zien welke types worden geëlimineerd.</div>
+      <div class="divider"></div>
+      <div class="count-line"><div class="count-dot"></div><span id="active-count">9 van 9 types actief</span></div>
+    </div>
+
+    <!-- CIRKEL 2: V-CIRKEL -->
+    <div id="tab-2" class="section" style="display:none">
+      <div class="sec-label">Cirkel 2</div>
+      <div class="sec-title">V-Cirkel</div>
+      <p class="sec-intro">Verleiding, Vermijding, Verdediging en Verslaving van de actieve types. Welke patronen herkent u het sterkst?</p>
+      <div id="vc-grid" class="vc-grid">
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">1</div>
+        <div>
+          <div class="vc-name">Type 1 · Perfectionist</div>
+          <div class="vc-meta">Buik · Mismatcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 het juiste doe in dit leven en mijn eigen normen strikt naleef, dan ben ik perfect en mag ik er zijn. Dan hoef ik mijn eigen imperfectie niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Perfectie</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Imperfectie</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Reactieformatie</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Woede</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">2</div>
+        <div>
+          <div class="vc-name">Type 2 · Helper</div>
+          <div class="vc-meta">Hart · Matcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 mijn aandacht op de behoefte van anderen richt, dan ben ik nodig en verdien ik de liefde van andere mensen. Dan hoef ik mijn eigen behoeftigheid niet onder ogen te komen en schiet ik nooit tekort.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Nodig zijn</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Behoeftigheid</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Onderdrukken</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Trots</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">3</div>
+        <div>
+          <div class="vc-name">Type 3 · Presteerder</div>
+          <div class="vc-meta">Hart · Matcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 mijn doelen haal en veel presteer in dit leven, dan ben ik succesvol en word ik erkend door andere mensen. Dan hoef ik mijn eigen falen niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Succes</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Falen</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Identificatie</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Bedrog</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">4</div>
+        <div>
+          <div class="vc-name">Type 4 · Individualist</div>
+          <div class="vc-meta">Hart · Mismatcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 echt mezelf ben en me onderscheid van andere mensen, dan ben ik uniek en word ik niet afgewezen. Dan hoef ik mijn eigen alledaagsheid niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Echtheid</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Alledaagsheid</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Onderscheiden</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Afgunst</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">5</div>
+        <div>
+          <div class="vc-name">Type 5 · Onderzoeker</div>
+          <div class="vc-meta">Hoofd · Mismatcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 probeer de wereld te begrijpen, dan blijf ik zelfredzaam en onafhankelijk van de emotionele wereld. Dan hoef ik mijn eigen afhankelijkheid niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Kennis</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Afhankelijkheid</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Terugtrekken</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Hebzucht</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">6</div>
+        <div>
+          <div class="vc-name">Type 6 · Loyalist</div>
+          <div class="vc-meta">Hoofd · Mismatcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 loyaal ben aan anderen en inspeel op hun verwachtingen, dan ben ik veilig. Dan hoef ik niet op mezelf te vertrouwen en kan ik wegblijven bij mijn eigen onzekerheid.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Veiligheid</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Onzekerheid</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Projecteren</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Angst</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">7</div>
+        <div>
+          <div class="vc-name">Type 7 · Enthousiasteling</div>
+          <div class="vc-meta">Hoofd · Matcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 leuke dingen doe en me zo veel mogelijk laat prikkelen door de buitenwereld, dan hou ik het plezierig. Dan hoef ik de pijn en de beperkingen van het leven niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Plezier</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Pijn</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Rationaliseren</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Onmatigheid</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">8</div>
+        <div>
+          <div class="vc-name">Type 8 · Uitdager</div>
+          <div class="vc-meta">Buik · Matcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 op mezelf vertrouw en geen invloed van anderen toelaat, dan sta ik in mijn kracht. Dan hoef ik mijn eigen kwetsbaarheid niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Kracht</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Kwetsbaarheid</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Ontkennen</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Lust</span></div>
+      </div>
+    </div>
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">9</div>
+        <div>
+          <div class="vc-name">Type 9 · Vredestichter</div>
+          <div class="vc-meta">Buik · Matcher</div>
+        </div>
+      </div>
+      <div class="vc-credo">Als ik 24/7 mezelf tevreden hou en onbelangrijk maak, dan bewaar ik de rust. Dan hoef ik mijn eigen onrust en conflicten niet onder ogen te komen.</div>
+      <div class="vc-rows">
+        <div class="vc-row"><span class="vc-key">Verleiding</span><span class="vc-val">Harmonie</span></div><div class="vc-row"><span class="vc-key">Vermijding</span><span class="vc-val">Conflict</span></div><div class="vc-row"><span class="vc-key">Verdediging</span><span class="vc-val">Verdoven</span></div><div class="vc-row"><span class="vc-key">Verslaving</span><span class="vc-val">Luiheid</span></div>
+      </div>
+    </div></div>
+    </div>
+
+    <!-- CIRKEL 3: CENTRUM -->
+    <div id="tab-3" class="section" style="display:none">
+      <div class="sec-label">Cirkel 3</div>
+      <div class="sec-title">Hart · Hoofd · Buik</div>
+      <p class="sec-intro">Filter op centrum als extra zeefstap.</p>
+      <div class="centrum-grid">
+        <button class="centrum-btn" id="btn-Hart" onclick="filterCentrum(&#39;Hart&#39;)">
+          <span class="c-lbl" style="color:var(--hart)">Hart</span>Typen 2, 3, 4 — Relaties &amp; erkenning
+        </button>
+        <button class="centrum-btn" id="btn-Hoofd" onclick="filterCentrum(&#39;Hoofd&#39;)">
+          <span class="c-lbl" style="color:var(--hoofd)">Hoofd</span>Typen 5, 6, 7 — Veiligheid &amp; begrip
+        </button>
+        <button class="centrum-btn" id="btn-Buik" onclick="filterCentrum(&#39;Buik&#39;)">
+          <span class="c-lbl" style="color:var(--buik)">Buik</span>Typen 8, 9, 1 — Autonomie &amp; kracht
+        </button>
+        <button class="centrum-btn sel-all" id="btn-Alle" onclick="filterCentrum(null)">
+          <span class="c-lbl">Alle</span>Geen centrumfilter
+        </button>
+      </div>
+      <div class="centrum-uitleg">
+        <strong style="color:var(--hart)">Hart</strong> — Worstelen met identiteit en eigenwaarde. Kernvraag: word ik gezien?<br>
+        <strong style="color:var(--hoofd)">Hoofd</strong> — Worstelen met angst en onzekerheid. Kernvraag: ben ik veilig?<br>
+        <strong style="color:var(--buik)">Buik</strong> — Worstelen met autonomie en grenzen. Kernvraag: heb ik controle?
+      </div>
+    </div>
+
+    <!-- KERNKWADRANTEN -->
+    <div id="tab-4" class="section" style="display:none">
+      <div class="sec-label">Extra</div>
+      <div class="sec-title">Kernkwadranten</div>
+      <p class="sec-intro">Per actief type drie kernkwadranten, elk met kernkwaliteit, valkuil, allergie en uitdaging.</p>
+      <div id="kk-grid" class="kk-grid">
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">1</div>
+        <div>
+          <div class="vc-name">Type 1 · Perfectionist</div>
+          <div class="vc-meta">Buik</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Kritisch</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Streng</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Meningloos</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Mild zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Serieus</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Zwaarmoedig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Gemakzuchtig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Licht zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Principieel</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Star</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Opportunistisch</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Flexibel zijn</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">2</div>
+        <div>
+          <div class="vc-name">Type 2 · Helper</div>
+          <div class="vc-meta">Hart</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Zorgzaam</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Overbezorgd</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Behoeftig zijn</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Zelfzorg</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Empathisch</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Jezelf verliezen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Egoïstisch</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Bij jezelf blijven</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Beschikbaar zijn</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Jezelf wegcijferen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Niet beschikbaar</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Ruimte nemen</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">3</div>
+        <div>
+          <div class="vc-name">Type 3 · Presteerder</div>
+          <div class="vc-meta">Hart</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Flexibel</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Kameleon gedrag</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Star</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Kleur bekennen</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Oplossingsgericht</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Bedrog</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Star</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Eerlijk zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Leveren</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Scoren</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Ontvangen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Stilstaan</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hart" style="width:32px;height:32px;font-size:14px">4</div>
+        <div>
+          <div class="vc-name">Type 4 · Individualist</div>
+          <div class="vc-meta">Hart</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Jezelf zijn</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Niet aangesloten</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Alledaags</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Aansluiten</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Doorvoelen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Dramatiseren</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Vlak</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Kop erbij houden</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Authentiek</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Excentriek</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Onecht</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Aanpassen</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">5</div>
+        <div>
+          <div class="vc-name">Type 5 · Onderzoeker</div>
+          <div class="vc-meta">Hoofd</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Redelijk</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Emotieloos</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Onredelijk</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Emotie toelaten</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Waarnemen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Afwezig zijn</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Waargenomen worden</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Aanwezig zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Volledig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Verwarring</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Onvolledig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Rode draad pakken</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">6</div>
+        <div>
+          <div class="vc-name">Type 6 · Loyalist</div>
+          <div class="vc-meta">Hoofd</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Sociaal</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Wegcijferen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Asociaal</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Focussen op jezelf</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Alert</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Paniek</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Onoplettend</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Jezelf geruststellen</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Twijfelen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Onduidelijk</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Zwart/wit</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Duidelijk zijn</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Hoofd" style="width:32px;height:32px;font-size:14px">7</div>
+        <div>
+          <div class="vc-name">Type 7 · Enthousiasteling</div>
+          <div class="vc-meta">Hoofd</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Out of the box</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Ongrijpbaar</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Begrensd</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Focussen</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Speels</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Niet serieus</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Saai</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Serieus zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Licht</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Oppervlakkig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Zwaar</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Verdiepen</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">8</div>
+        <div>
+          <div class="vc-name">Type 8 · Uitdager</div>
+          <div class="vc-meta">Buik</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Besluitvaardig</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Zwart/wit</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Besluiteloos</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Twijfel toelaten</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Direct</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Bot</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Indirect</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Tactvol zijn</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Leiden</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Overnemen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Volgen</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Invloed toelaten</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-Buik" style="width:32px;height:32px;font-size:14px">9</div>
+        <div>
+          <div class="vc-name">Type 9 · Vredestichter</div>
+          <div class="vc-meta">Buik</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Sfeer bewaken</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Afvlakken</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Confrontatie</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Benoemen</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Relativeren</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Onbelangrijk maken</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Overdrijven</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Belangrijk maken</div>
+            </div>
+          </div>
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">Bescheiden</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">Onzichtbaar</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">Arrogant</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">Profileren</div>
+            </div>
+          </div>
+      </div>
+    </div></div>
+    </div>
+
+    <button class="reset-btn" onclick="resetAll()">↺ Reset alle keuzes</button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Actieve types</div>
+    <div class="type-cards" id="type-cards"><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Buik">1</div>
+        <div class="tc-name">Type 1 · Perfectionist</div>
+      </div>
+      <div class="tc-sub">Perfectie · Buik</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hart">2</div>
+        <div class="tc-name">Type 2 · Helper</div>
+      </div>
+      <div class="tc-sub">Nodig zijn · Hart</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hart">3</div>
+        <div class="tc-name">Type 3 · Presteerder</div>
+      </div>
+      <div class="tc-sub">Succes · Hart</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hart">4</div>
+        <div class="tc-name">Type 4 · Individualist</div>
+      </div>
+      <div class="tc-sub">Echtheid · Hart</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hoofd">5</div>
+        <div class="tc-name">Type 5 · Onderzoeker</div>
+      </div>
+      <div class="tc-sub">Kennis · Hoofd</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hoofd">6</div>
+        <div class="tc-name">Type 6 · Loyalist</div>
+      </div>
+      <div class="tc-sub">Veiligheid · Hoofd</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Hoofd">7</div>
+        <div class="tc-name">Type 7 · Enthousiasteling</div>
+      </div>
+      <div class="tc-sub">Plezier · Hoofd</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Buik">8</div>
+        <div class="tc-name">Type 8 · Uitdager</div>
+      </div>
+      <div class="tc-sub">Kracht · Buik</div>
+      <div class="elim-tag">geëlimineerd</div></div><div class="type-card">
+      <div class="tc-top">
+        <div class="type-badge badge-Buik">9</div>
+        <div class="tc-name">Type 9 · Vredestichter</div>
+      </div>
+      <div class="tc-sub">Harmonie · Buik</div>
+      <div class="elim-tag">geëlimineerd</div></div></div>
+  </aside>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+//  DATA — rechtstreeks uit Excel final
+// ══════════════════════════════════════════════════
+const TYPES = [
+  {
+    nr:1, naam:"Perfectionist", centrum:"Buik", match:false,
+    verleiding:"Perfectie", vermijding:"Imperfectie", verdediging:"Reactieformatie", verslaving:"Woede",
+    credo:"Als ik 24/7 het juiste doe in dit leven en mijn eigen normen strikt naleef, dan ben ik perfect en mag ik er zijn. Dan hoef ik mijn eigen imperfectie niet onder ogen te komen.",
+    // 6 polariteiten: comfortabele kant
+    pol:{
+      "Match/Mismatch":  "Mismatcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Proactief",
+      "Zichtbaarheid":   "Geprofileerd",
+      "Stijl":           "Formeel",
+      "Contact":         "Apart"
+    },
+    kk:[
+      {kwal:"Kritisch",     valk:"Streng",         aller:"Meningloos",        uitd:"Mild zijn"},
+      {kwal:"Serieus",      valk:"Zwaarmoedig",     aller:"Gemakzuchtig",      uitd:"Licht zijn"},
+      {kwal:"Principieel",  valk:"Star",            aller:"Opportunistisch",   uitd:"Flexibel zijn"}
+    ]
+  },
+  {
+    nr:2, naam:"Helper", centrum:"Hart", match:true,
+    verleiding:"Nodig zijn", vermijding:"Behoeftigheid", verdediging:"Onderdrukken", verslaving:"Trots",
+    credo:"Als ik 24/7 mijn aandacht op de behoefte van anderen richt, dan ben ik nodig en verdien ik de liefde van andere mensen. Dan hoef ik mijn eigen behoeftigheid niet onder ogen te komen en schiet ik nooit tekort.",
+    pol:{
+      "Match/Mismatch":  "Matcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Proactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Informeel",
+      "Contact":         "Samen"
+    },
+    kk:[
+      {kwal:"Zorgzaam",          valk:"Overbezorgd",       aller:"Behoeftig zijn",    uitd:"Zelfzorg"},
+      {kwal:"Empathisch",        valk:"Jezelf verliezen",  aller:"Egoïstisch",        uitd:"Bij jezelf blijven"},
+      {kwal:"Beschikbaar zijn",  valk:"Jezelf wegcijferen",aller:"Niet beschikbaar",  uitd:"Ruimte nemen"}
+    ]
+  },
+  {
+    nr:3, naam:"Presteerder", centrum:"Hart", match:true,
+    verleiding:"Succes", vermijding:"Falen", verdediging:"Identificatie", verslaving:"Bedrog",
+    credo:"Als ik 24/7 mijn doelen haal en veel presteer in dit leven, dan ben ik succesvol en word ik erkend door andere mensen. Dan hoef ik mijn eigen falen niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Matcher",
+      "Oriëntatie":      "Doelgericht",
+      "Initiatief":      "Proactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Informeel",
+      "Contact":         "Samen"
+    },
+    kk:[
+      {kwal:"Flexibel",           valk:"Kameleon gedrag",  aller:"Star",       uitd:"Kleur bekennen"},
+      {kwal:"Oplossingsgericht",  valk:"Bedrog",           aller:"Star",       uitd:"Eerlijk zijn"},
+      {kwal:"Leveren",            valk:"Scoren",           aller:"Ontvangen",  uitd:"Stilstaan"}
+    ]
+  },
+  {
+    nr:4, naam:"Individualist", centrum:"Hart", match:false,
+    verleiding:"Echtheid", vermijding:"Alledaagsheid", verdediging:"Onderscheiden", verslaving:"Afgunst",
+    credo:"Als ik 24/7 echt mezelf ben en me onderscheid van andere mensen, dan ben ik uniek en word ik niet afgewezen. Dan hoef ik mijn eigen alledaagsheid niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Mismatcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Reactief",
+      "Zichtbaarheid":   "Geprofileerd",
+      "Stijl":           "Informeel",
+      "Contact":         "Apart"
+    },
+    kk:[
+      {kwal:"Jezelf zijn",   valk:"Niet aangesloten",  aller:"Alledaags",  uitd:"Aansluiten"},
+      {kwal:"Doorvoelen",    valk:"Dramatiseren",      aller:"Vlak",       uitd:"Kop erbij houden"},
+      {kwal:"Authentiek",    valk:"Excentriek",        aller:"Onecht",     uitd:"Aanpassen"}
+    ]
+  },
+  {
+    nr:5, naam:"Onderzoeker", centrum:"Hoofd", match:false,
+    verleiding:"Kennis", vermijding:"Afhankelijkheid", verdediging:"Terugtrekken", verslaving:"Hebzucht",
+    credo:"Als ik 24/7 probeer de wereld te begrijpen, dan blijf ik zelfredzaam en onafhankelijk van de emotionele wereld. Dan hoef ik mijn eigen afhankelijkheid niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Mismatcher",
+      "Oriëntatie":      "Doelgericht",
+      "Initiatief":      "Reactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Formeel",
+      "Contact":         "Apart"
+    },
+    kk:[
+      {kwal:"Redelijk",    valk:"Emotieloos",      aller:"Onredelijk",          uitd:"Emotie toelaten"},
+      {kwal:"Waarnemen",   valk:"Afwezig zijn",    aller:"Waargenomen worden",  uitd:"Aanwezig zijn"},
+      {kwal:"Volledig",    valk:"Verwarring",      aller:"Onvolledig",          uitd:"Rode draad pakken"}
+    ]
+  },
+  {
+    nr:6, naam:"Loyalist", centrum:"Hoofd", match:false,
+    verleiding:"Veiligheid", vermijding:"Onzekerheid", verdediging:"Projecteren", verslaving:"Angst",
+    credo:"Als ik 24/7 loyaal ben aan anderen en inspeel op hun verwachtingen, dan ben ik veilig. Dan hoef ik niet op mezelf te vertrouwen en kan ik wegblijven bij mijn eigen onzekerheid.",
+    pol:{
+      "Match/Mismatch":  "Mismatcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Reactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Formeel",
+      "Contact":         "Samen"
+    },
+    kk:[
+      {kwal:"Sociaal",    valk:"Wegcijferen",   aller:"Asociaal",      uitd:"Focussen op jezelf"},
+      {kwal:"Alert",      valk:"Paniek",         aller:"Onoplettend",   uitd:"Jezelf geruststellen"},
+      {kwal:"Twijfelen",  valk:"Onduidelijk",   aller:"Zwart/wit",     uitd:"Duidelijk zijn"}
+    ]
+  },
+  {
+    nr:7, naam:"Enthousiasteling", centrum:"Hoofd", match:true,
+    verleiding:"Plezier", vermijding:"Pijn", verdediging:"Rationaliseren", verslaving:"Onmatigheid",
+    credo:"Als ik 24/7 leuke dingen doe en me zo veel mogelijk laat prikkelen door de buitenwereld, dan hou ik het plezierig. Dan hoef ik de pijn en de beperkingen van het leven niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Matcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Reactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Informeel",
+      "Contact":         "Apart"
+    },
+    kk:[
+      {kwal:"Out of the box",  valk:"Ongrijpbaar",    aller:"Begrensd",   uitd:"Focussen"},
+      {kwal:"Speels",          valk:"Niet serieus",   aller:"Saai",       uitd:"Serieus zijn"},
+      {kwal:"Licht",           valk:"Oppervlakkig",   aller:"Zwaar",      uitd:"Verdiepen"}
+    ]
+  },
+  {
+    nr:8, naam:"Uitdager", centrum:"Buik", match:true,
+    verleiding:"Kracht", vermijding:"Kwetsbaarheid", verdediging:"Ontkennen", verslaving:"Lust",
+    credo:"Als ik 24/7 op mezelf vertrouw en geen invloed van anderen toelaat, dan sta ik in mijn kracht. Dan hoef ik mijn eigen kwetsbaarheid niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Matcher",
+      "Oriëntatie":      "Doelgericht",
+      "Initiatief":      "Proactief",
+      "Zichtbaarheid":   "Geprofileerd",
+      "Stijl":           "Formeel",
+      "Contact":         "Apart"
+    },
+    kk:[
+      {kwal:"Besluitvaardig",  valk:"Zwart/wit",        aller:"Besluiteloos",  uitd:"Twijfel toelaten"},
+      {kwal:"Direct",          valk:"Bot",               aller:"Indirect",      uitd:"Tactvol zijn"},
+      {kwal:"Leiden",          valk:"Overnemen",         aller:"Volgen",        uitd:"Invloed toelaten"}
+    ]
+  },
+  {
+    nr:9, naam:"Vredestichter", centrum:"Buik", match:true,
+    verleiding:"Harmonie", vermijding:"Conflict", verdediging:"Verdoven", verslaving:"Luiheid",
+    credo:"Als ik 24/7 mezelf tevreden hou en onbelangrijk maak, dan bewaar ik de rust. Dan hoef ik mijn eigen onrust en conflicten niet onder ogen te komen.",
+    pol:{
+      "Match/Mismatch":  "Matcher",
+      "Oriëntatie":      "Procesgericht",
+      "Initiatief":      "Reactief",
+      "Zichtbaarheid":   "Ongeprofileerd",
+      "Stijl":           "Formeel",
+      "Contact":         "Samen"
+    },
+    kk:[
+      {kwal:"Sfeer bewaken",  valk:"Afvlakken",           aller:"Confrontatie",  uitd:"Benoemen"},
+      {kwal:"Relativeren",    valk:"Onbelangrijk maken",  aller:"Overdrijven",   uitd:"Belangrijk maken"},
+      {kwal:"Bescheiden",     valk:"Onzichtbaar",         aller:"Arrogant",      uitd:"Profileren"}
+    ]
+  }
+];
+
+// 6 polariteiten — de eerste is Match/Mismatch
+const DIMS = [
+  { id:"Match/Mismatch",  label:"Match / Mismatch",  opts:["Matcher","Mismatcher"] },
+  { id:"Oriëntatie",      label:"Oriëntatie",         opts:["Doelgericht","Procesgericht"] },
+  { id:"Initiatief",      label:"Initiatief",         opts:["Proactief","Reactief"] },
+  { id:"Zichtbaarheid",   label:"Zichtbaarheid",      opts:["Geprofileerd","Ongeprofileerd"] },
+  { id:"Stijl",           label:"Stijl",              opts:["Formeel","Informeel"] },
+  { id:"Contact",         label:"Contact",            opts:["Apart","Samen"] },
+];
+
+// ── STATE ─────────────────────────────────────────
+let choices = {};
+let centrumFilter = null;
+
+// ── BUILD POLARITEITEN UI ─────────────────────────
+function buildPols() {
+  const c = document.getElementById('pol-dims');
+  DIMS.forEach(d => {
+    const w = document.createElement('div');
+    w.className = 'pol-block';
+    w.innerHTML = `<div class="pol-dim-label">${d.label}</div>
+    <div class="pol-pair">${
+      d.opts.map(o =>
+        `<button class="pol-btn" id="pb-${d.id}-${o}" onclick="selPol('${d.id}','${o}')">
+          <span class="lbl">Comfortabel</span>${o}
+        </button>`
+      ).join('')
+    }</div>`;
+    c.appendChild(w);
+  });
+}
+
+// ── FILTER ────────────────────────────────────────
+function activeTypes() {
+  return TYPES.filter(t => {
+    for (const [dim, val] of Object.entries(choices)) {
+      if (!val) continue;
+      if (t.pol[dim] && t.pol[dim] !== val) return false;
+    }
+    if (centrumFilter && t.centrum !== centrumFilter) return false;
+    return true;
+  });
+}
+
+// ── RENDER ────────────────────────────────────────
+function render() {
+  const active = activeTypes();
+  const anrs = active.map(t => t.nr);
+
+  // Sidebar
+  const sc = document.getElementById('type-cards');
+  sc.innerHTML = '';
+  TYPES.forEach(t => {
+    const on = anrs.includes(t.nr);
+    const d = document.createElement('div');
+    d.className = 'type-card' + (on ? '' : ' eliminated');
+    d.onclick = () => on && highlight(t.nr);
+    d.innerHTML = `
+      <div class="tc-top">
+        <div class="type-badge badge-${t.centrum}">${t.nr}</div>
+        <div class="tc-name">Type ${t.nr} · ${t.naam}</div>
+      </div>
+      <div class="tc-sub">${t.verleiding} · ${t.centrum}</div>
+      <div class="elim-tag">geëlimineerd</div>`;
+    sc.appendChild(d);
+  });
+
+  document.getElementById('active-count').textContent = `${active.length} van 9 types actief`;
+
+  // Result banner
+  const ban = document.getElementById('result-banner');
+  if (active.length === 1) {
+    const t = active[0];
+    ban.classList.add('visible');
+    document.getElementById('r-title').textContent = `Type ${t.nr} · ${t.naam}`;
+    document.getElementById('r-meta').textContent = `${t.centrum}type · ${t.pol['Match/Mismatch']}`;
+    document.getElementById('r-credo').textContent = t.credo;
+    document.getElementById('r-chips').innerHTML =
+      [['Verleiding',t.verleiding],['Vermijding',t.vermijding],['Verdediging',t.verdediging],['Verslaving',t.verslaving]]
+      .map(([k,v]) => `<div class="r-chip"><span class="chip-k">${k}</span><span class="chip-v">${v}</span></div>`)
+      .join('');
+  } else {
+    ban.classList.remove('visible');
+  }
+
+  renderVC(active);
+  renderKK(active);
+}
+
+function renderVC(active) {
+  const g = document.getElementById('vc-grid');
+  if (!g) return;
+  if (!active.length) { g.innerHTML = '<p class="empty-state">Alle types geëlimineerd. Reset uw keuzes.</p>'; return; }
+  g.innerHTML = active.map(t => `
+    <div class="vc-card">
+      <div class="vc-head">
+        <div class="type-badge badge-${t.centrum}" style="width:32px;height:32px;font-size:14px">${t.nr}</div>
+        <div>
+          <div class="vc-name">Type ${t.nr} · ${t.naam}</div>
+          <div class="vc-meta">${t.centrum} · ${t.pol['Match/Mismatch']}</div>
+        </div>
+      </div>
+      <div class="vc-credo">${t.credo}</div>
+      <div class="vc-rows">
+        ${[['Verleiding',t.verleiding],['Vermijding',t.vermijding],['Verdediging',t.verdediging],['Verslaving',t.verslaving]]
+          .map(([k,v]) => `<div class="vc-row"><span class="vc-key">${k}</span><span class="vc-val">${v}</span></div>`)
+          .join('')}
+      </div>
+    </div>`).join('');
+}
+
+function renderKK(active) {
+  const g = document.getElementById('kk-grid');
+  if (!g) return;
+  if (!active.length) { g.innerHTML = '<p class="empty-state">Alle types geëlimineerd. Reset uw keuzes.</p>'; return; }
+  g.innerHTML = active.map(t => `
+    <div class="kk-card">
+      <div class="kk-head">
+        <div class="type-badge badge-${t.centrum}" style="width:32px;height:32px;font-size:14px">${t.nr}</div>
+        <div>
+          <div class="vc-name">Type ${t.nr} · ${t.naam}</div>
+          <div class="vc-meta">${t.centrum}</div>
+        </div>
+      </div>
+      <div class="kk-quads">
+        ${t.kk.map(q => `
+          <div class="kk-quad">
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-kwal">Kernkwaliteit</div>
+              <div class="kk-val">${q.kwal}</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-valk">Valkuil</div>
+              <div class="kk-val">${q.valk}</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-aller">Allergie</div>
+              <div class="kk-val">${q.aller}</div>
+            </div>
+            <div class="kk-cell">
+              <div class="kk-lbl lbl-uitd">Uitdaging</div>
+              <div class="kk-val">${q.uitd}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ── INTERACTIONS ──────────────────────────────────
+function selPol(dim, val) {
+  choices[dim] = choices[dim] === val ? undefined : val;
+
+  DIMS.find(d => d.id === dim).opts.forEach(o => {
+    document.getElementById(`pb-${dim}-${o}`)?.classList.toggle('selected', choices[dim] === o);
+  });
+
+  const bar = document.getElementById('pol-effect');
+  if (choices[dim]) {
+    const elim = TYPES.filter(t => t.pol[dim] && t.pol[dim] !== choices[dim]);
+    bar.className = 'effect-bar has';
+    bar.textContent = elim.length
+      ? `"${choices[dim]}" elimineert: ${elim.map(t => `Type ${t.nr} (${t.naam})`).join(', ')}`
+      : `"${choices[dim]}" — geen eliminaties op deze dimensie.`;
+  } else {
+    bar.className = 'effect-bar';
+    bar.textContent = 'Selecteer een polariteit om te zien welke types worden geëlimineerd.';
+  }
+  render();
+}
+
+function filterCentrum(c) {
+  centrumFilter = c;
+  ['Hart','Hoofd','Buik','Alle'].forEach(id => {
+    const b = document.getElementById('btn-' + id);
+    if (b) b.className = 'centrum-btn';
+  });
+  const id = c ? 'btn-' + c : 'btn-Alle';
+  const cls = c ? `centrum-btn sel-${c.toLowerCase()}` : 'centrum-btn sel-all';
+  const b = document.getElementById(id);
+  if (b) b.className = cls;
+  render();
+}
+
+function showTab(n) {
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById('tab-' + i);
+    if (el) el.style.display = i === n ? '' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === n - 1));
+  render();
+}
+
+function highlight(nr) {
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('highlighted'));
+  const idx = TYPES.findIndex(t => t.nr === nr);
+  document.querySelectorAll('.type-card')[idx]?.classList.add('highlighted');
+}
+
+function resetAll() {
+  choices = {}; centrumFilter = null;
+  document.querySelectorAll('.pol-btn').forEach(b => b.classList.remove('selected'));
+  const bar = document.getElementById('pol-effect');
+  bar.className = 'effect-bar';
+  bar.textContent = 'Selecteer een polariteit om te zien welke types worden geëlimineerd.';
+  ['Hart','Hoofd','Buik'].forEach(id => {
+    const b = document.getElementById('btn-' + id);
+    if (b) b.className = 'centrum-btn';
+  });
+  const alle = document.getElementById('btn-Alle');
+  if (alle) alle.className = 'centrum-btn sel-all';
+  render();
+}
+
+buildPols();
+render();
+</script>
+
+
+</body></html>
