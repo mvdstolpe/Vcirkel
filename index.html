@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0092)file:///C:/Users/Michel/OneDrive/Documents/V-Cirkel/V-Cirkel%20%C2%B7%20Type%20Deductie.html -->
+<!-- saved from url=(0063)file:///C:/Users/Michel/OneDrive/Documents/V-Cirkel/index2.html -->
 <html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V-Cirkel · Type Deductie</title>
-<link href="./Index_files/css2" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 :root {
   --bg:#0d0d0f; --surface:#16161a; --surface2:#1e1e24; --border:#2a2a35;
@@ -163,36 +163,6 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-we
       <div class="sec-title">Polariteiten</div>
       <p class="sec-intro">Kies per dimensie wat het meest <em>comfortabel</em> voelt voor de persoon. Types met een mismatch worden direct geëlimineerd.</p>
       <div id="pol-dims"><div class="pol-block"><div class="pol-dim-label">Match / Mismatch</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Match/Mismatch-Matcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Matcher&#39;)">
-          <span class="lbl">Comfortabel</span>Matcher
-        </button><button class="pol-btn" id="pb-Match/Mismatch-Mismatcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Mismatcher&#39;)">
-          <span class="lbl">Comfortabel</span>Mismatcher
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Oriëntatie</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Oriëntatie-Doelgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Doelgericht&#39;)">
-          <span class="lbl">Comfortabel</span>Doelgericht
-        </button><button class="pol-btn" id="pb-Oriëntatie-Procesgericht" onclick="selPol(&#39;Oriëntatie&#39;,&#39;Procesgericht&#39;)">
-          <span class="lbl">Comfortabel</span>Procesgericht
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Initiatief</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Initiatief-Proactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Proactief&#39;)">
-          <span class="lbl">Comfortabel</span>Proactief
-        </button><button class="pol-btn" id="pb-Initiatief-Reactief" onclick="selPol(&#39;Initiatief&#39;,&#39;Reactief&#39;)">
-          <span class="lbl">Comfortabel</span>Reactief
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Zichtbaarheid</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Zichtbaarheid-Geprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Geprofileerd&#39;)">
-          <span class="lbl">Comfortabel</span>Geprofileerd
-        </button><button class="pol-btn" id="pb-Zichtbaarheid-Ongeprofileerd" onclick="selPol(&#39;Zichtbaarheid&#39;,&#39;Ongeprofileerd&#39;)">
-          <span class="lbl">Comfortabel</span>Ongeprofileerd
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Stijl</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Stijl-Formeel" onclick="selPol(&#39;Stijl&#39;,&#39;Formeel&#39;)">
-          <span class="lbl">Comfortabel</span>Formeel
-        </button><button class="pol-btn" id="pb-Stijl-Informeel" onclick="selPol(&#39;Stijl&#39;,&#39;Informeel&#39;)">
-          <span class="lbl">Comfortabel</span>Informeel
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Contact</div>
-    <div class="pol-pair"><button class="pol-btn" id="pb-Contact-Apart" onclick="selPol(&#39;Contact&#39;,&#39;Apart&#39;)">
-          <span class="lbl">Comfortabel</span>Apart
-        </button><button class="pol-btn" id="pb-Contact-Samen" onclick="selPol(&#39;Contact&#39;,&#39;Samen&#39;)">
-          <span class="lbl">Comfortabel</span>Samen
-        </button></div></div><div class="pol-block"><div class="pol-dim-label">Match / Mismatch</div>
     <div class="pol-pair"><button class="pol-btn" id="pb-Match/Mismatch-Matcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Matcher&#39;)">
           <span class="lbl">Comfortabel</span>Matcher
         </button><button class="pol-btn" id="pb-Match/Mismatch-Mismatcher" onclick="selPol(&#39;Match/Mismatch&#39;,&#39;Mismatcher&#39;)">
@@ -1428,7 +1398,10 @@ function resetAll() {
   render();
 }
 
-buildPols();
+// Guard tegen dubbele initialisatie
+if (!document.getElementById('pol-dims').hasChildNodes()) {
+  buildPols();
+}
 render();
 </script>
 
